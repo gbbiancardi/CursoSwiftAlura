@@ -22,7 +22,7 @@ class RefeicoesTableViewController: UITableViewController {
         return refeicoes.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // o _ é para identificar que é a instância da tableView
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // o _ é para ocultar o parâmetro da variável quando o método for invocado. Caso seja necessário mostrar, basta não colocar o _
         
         let celula = UITableViewCell(style: .default, reuseIdentifier: nil) // identificador da célula
         let refeicao = refeicoes[indexPath.row] // variável para ler a linha do array
@@ -38,9 +38,15 @@ class RefeicoesTableViewController: UITableViewController {
         tableView.reloadData() // faz atualizar a table view
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // método para interceptar as telas de interligadas e conseguir manipular a interação
-        if let viewController = segue.destination as? ViewController {
-            viewController.tableViewController = self
+    // método para interceptar as telas de interligadas e conseguir manipular a interação
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // coloca-se o for para aparecer como nome do parâmetro apenas para quando o método for invocado. Internamente o método não encherga o for
+        
+        if segue.identifier == "adicionar" { // garante que o segue que estamos preparando é o que existe e foi identificado
+            if let viewController = segue.destination as? ViewController {
+                viewController.tableViewController = self
+            }
+        } else {
+            print("Erro: segue diferente da identificada!")
         }
     }
 }
