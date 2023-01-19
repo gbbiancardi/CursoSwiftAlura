@@ -7,30 +7,19 @@
 
 import UIKit
 
+// relativo a interface em Java
+protocol AdicionaRefeicaoDelegate {
+    func add(_ refeicao: Refeicao)
+}
+
 class ViewController: UIViewController {
 
-    var tableViewController: RefeicoesTableViewController?
+    var delegate: AdicionaRefeicaoDelegate?
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
     
     @IBAction func adicionar() {
-//        ----- MÉTODO 1 ------
-        
-//        if let nomeDaRefeicao = nomeTextField?.text, let felicidadeDaRefeicao = felicidadeTextField?.text {
-//            let nome = nomeDaRefeicao
-//
-//            if let felicidade = Int(felicidadeDaRefeicao) {
-//                let refeicao = Refeicao(nome: nome, felicidade: felicidade)
-//
-//                print("Comi: \(nome) e fiquei com felicidade: \(felicidade).") // interpolação de variáveis
-//            } else {
-//                print("Erro ao tentar criar a refeição.")
-//            }
-//        }
-        
-//      ----- MÉTODO 2 -----
-        
         guard let nomeDaRefeicao = nomeTextField?.text else {
             return print("Erro ao tentar criar a refeição.")
         }
@@ -43,7 +32,7 @@ class ViewController: UIViewController {
         
         print("Comi: \(nomeDaRefeicao) e fiquei com felicidade: \(felicidade).")
         
-        tableViewController?.add(refeicao)
+        delegate?.add(refeicao)
         navigationController?.popViewController(animated: true)
     }
 }

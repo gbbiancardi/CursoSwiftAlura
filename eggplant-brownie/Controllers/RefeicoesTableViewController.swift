@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RefeicoesTableViewController: UITableViewController {
+class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDelegate {
 
     var refeicoes = [Refeicao(nome: "Macarrão", felicidade: 4),
                      Refeicao(nome: "Churros", felicidade: 4),
@@ -43,7 +43,7 @@ class RefeicoesTableViewController: UITableViewController {
         
         if segue.identifier == "adicionar" { // garante que o segue que estamos preparando é o que existe e foi identificado
             if let viewController = segue.destination as? ViewController {
-                viewController.tableViewController = self
+                viewController.delegate = self
             }
         } else {
             print("Erro: segue diferente da identificada!")
