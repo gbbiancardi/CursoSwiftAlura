@@ -12,21 +12,41 @@ protocol AdicionaRefeicaoDelegate {
     func add(_ refeicao: Refeicao)
 }
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdicionaItensDelegate {
     
     // MARK: - Atributos
 
     var delegate: AdicionaRefeicaoDelegate?
-    var itens: [Item] = [ Item(nome: "Molho de tomate", calorias: 40.0),
-                          Item(nome: "Queijo", calorias: 70.0),
-                          Item(nome: "Molho apimentado", calorias: 30.0),
-                          Item(nome: "Manjericão", calorias: 5.0)]
+    var itens: [Item] = []
+//        Item(nome: "Molho de tomate", calorias: 40.0),
+//                          Item(nome: "Queijo", calorias: 70.0),
+//                          Item(nome: "Molho apimentado", calorias: 30.0),
+//                          Item(nome: "Manjericão", calorias: 5.0)]
     var itensSelecionados: [Item] = []
     
     // MARK: - IBOutlets
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
+    @IBOutlet weak var itensTableView: UITableView!
+    
+    // MARK: - View life cycle
+    
+    // Ações para quandoa  view acabou de ser carregada
+    override func viewDidLoad() {
+        let botaoAdicionaItem = UIBarButtonItem(title: "Adicionar", style: .plain, target: self, action: #selector(adicionarItens))
+        navigationItem.rightBarButtonItem = botaoAdicionaItem
+    }
+    
+    @objc func adicionarItens() {
+        let adicionarItensViewController = AdicionarItensViewController(delegate: self)
+        navigationController?.pushViewController(adicionarItensViewController, animated: true)
+    }
+    
+    func add(_ item: Item) {
+        itens.append(item)
+        itensTableView.reloadData()
+    }
     
     // MARK: - UITableViewDataSource
     
