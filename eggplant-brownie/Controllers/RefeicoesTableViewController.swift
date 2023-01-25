@@ -26,8 +26,10 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
         
         let celula = UITableViewCell(style: .default, reuseIdentifier: nil) // identificador da célula
         let refeicao = refeicoes[indexPath.row] // variável para ler a linha do array
-        
         celula.textLabel?.text = refeicao.nome // le a variável nome do array
+        
+        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(mostrarDetalhes(_:)))
+        celula.addGestureRecognizer(longPress)
         
         return celula // retorna a célula na posição em questão
     }
@@ -36,6 +38,21 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
         print("Método add está sendo chamado! \(refeicao.nome) add!")
         refeicoes.append(refeicao)
         tableView.reloadData() // faz atualizar a table view
+    }
+    
+    @objc func mostrarDetalhes(_ gesture: UILongPressGestureRecognizer) {
+        if gesture.state == .began {
+            let celula = gesture.view as! UITableViewCell
+            guard let indexPath = tableView.indexPath(for: celula) else { return }
+            let refeicao = refeicoes[indexPath.row]
+            
+            let alerta = UIAlertController(title: refeicao.nome, message: refeicao.detalhes(), preferredStyle: .alert)
+            
+            let botaoCancelar = UIAlertAction(title: "OK", style: .default)
+            alerta.addAction(botaoCancelar)
+            
+            present(alerta, animated: true)
+        }
     }
     
     // método para interceptar as telas de interligadas e conseguir manipular a interação
