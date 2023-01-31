@@ -13,11 +13,6 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
                      Refeicao(nome: "Churros", felicidade: 4),
                      Refeicao(nome: "Pizza", felicidade: 5)]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("TableViewController foi carregada!!!")
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return refeicoes.count
     }
@@ -35,7 +30,6 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
     }
     
     func add(_ refeicao: Refeicao) {
-        print("Método add está sendo chamado! \(refeicao.nome) add!")
         refeicoes.append(refeicao)
         tableView.reloadData() // faz atualizar a table view
     }
@@ -51,7 +45,7 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
             let botaoCancelar = UIAlertAction(title: "OK", style: .default)
             alerta.addAction(botaoCancelar)
             
-            present(alerta, animated: true)
+            present(alerta, animated: true, completion: nil)
         }
     }
     

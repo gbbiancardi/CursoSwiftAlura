@@ -14,21 +14,20 @@ protocol AdicionaRefeicaoDelegate {
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AdicionaItensDelegate {
     
-    // MARK: - Atributos
-
-    var delegate: AdicionaRefeicaoDelegate?
-    var itens: [Item] = []
-//        Item(nome: "Molho de tomate", calorias: 40.0),
-//                          Item(nome: "Queijo", calorias: 70.0),
-//                          Item(nome: "Molho apimentado", calorias: 30.0),
-//                          Item(nome: "Manjericão", calorias: 5.0)]
-    var itensSelecionados: [Item] = []
-    
     // MARK: - IBOutlets
     
     @IBOutlet var nomeTextField: UITextField?
     @IBOutlet var felicidadeTextField: UITextField?
-    @IBOutlet weak var itensTableView: UITableView!
+    @IBOutlet weak var itensTableView: UITableView?
+    
+    // MARK: - Atributos
+
+    var delegate: AdicionaRefeicaoDelegate?
+    var itens: [Item] = [Item(nome: "Molho de tomate", calorias: 40.0),
+                          Item(nome: "Queijo", calorias: 70.0),
+                          Item(nome: "Molho apimentado", calorias: 30.0),
+                          Item(nome: "Manjericão", calorias: 5.0)]
+    var itensSelecionados: [Item] = []
     
     // MARK: - View life cycle
     
@@ -45,7 +44,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func add(_ item: Item) {
         itens.append(item)
-        itensTableView.reloadData()
+        if let tableView = itensTableView {
+                    tableView.reloadData()
+        } else {
+            let alerta = UIAlertController(title: "Desculpe", message: "não foi possível atualizar a tabela", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alerta.addAction(ok)
+            present(alerta, animated: true, completion: nil)
+        }
     }
     
     // MARK: - UITableViewDataSource
