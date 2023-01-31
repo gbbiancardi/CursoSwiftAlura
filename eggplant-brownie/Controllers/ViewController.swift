@@ -47,10 +47,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if let tableView = itensTableView {
                     tableView.reloadData()
         } else {
-            let alerta = UIAlertController(title: "Desculpe", message: "não foi possível atualizar a tabela", preferredStyle: .alert)
-            let ok = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-            alerta.addAction(ok)
-            present(alerta, animated: true, completion: nil)
+            Alerta(controller: self).exibe(mensagem: "Não foi possível atualizar a tabela.")
         }
     }
     
@@ -91,21 +88,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
     
+    func recuperaRefeicaoDoFormulario () -> Refeicao? {
+        guard let nomeDaRefeicao = nomeTextField?.text else { return nil }
+        guard let felicidadeDaRefeicao = felicidadeTextField?.text, let felicidade = Int(felicidadeDaRefeicao) else { return nil }
+        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
+        return refeicao
+    }
+    
     // MARK: - IBActions
     
     @IBAction func adicionar() {
-        guard let nomeDaRefeicao = nomeTextField?.text else {
-            return print("Erro ao tentar criar a refeição.")
+        guard let refeicao = recuperaRefeicaoDoFormulario() else {
+            Alerta(controller: self).exibe(mensagem: "Erro ao ler dados do formulário.")
+            return
         }
-        
-        guard let felicidadeDaRefeicao = felicidadeTextField?.text, let felicidade = Int(felicidadeDaRefeicao) else {
-            return print("Erro ao tentar criar a refeição.")
-        }
-        
-        let refeicao = Refeicao(nome: nomeDaRefeicao, felicidade: felicidade, itens: itensSelecionados)
-        
-        print("Comi: \(nomeDaRefeicao) e fiquei com felicidade: \(felicidade).")
-        
         delegate?.add(refeicao)
         navigationController?.popViewController(animated: true)
     }
