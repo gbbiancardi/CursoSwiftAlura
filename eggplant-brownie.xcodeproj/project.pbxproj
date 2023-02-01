@@ -12,6 +12,7 @@
 		5717DF97296CB7270075228D /* Refeicao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717DF96296CB7270075228D /* Refeicao.swift */; };
 		5717DF99296CB7830075228D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5717DF98296CB7830075228D /* Item.swift */; };
 		573AED442975F13B00E53C4F /* RefeicoesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573AED432975F13B00E53C4F /* RefeicoesTableViewController.swift */; };
+		573D1794298B03D90066E299 /* RemoveRefeicaoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573D1793298B03D90066E299 /* RemoveRefeicaoViewController.swift */; };
 		578540252989BFD100BDF8B4 /* Alerta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 578540242989BFD100BDF8B4 /* Alerta.swift */; };
 		57E01B412968CAC000E38F3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E01B402968CAC000E38F3B /* AppDelegate.swift */; };
 		57E01B432968CAC000E38F3B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E01B422968CAC000E38F3B /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 		5717DF96296CB7270075228D /* Refeicao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refeicao.swift; sourceTree = "<group>"; };
 		5717DF98296CB7830075228D /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		573AED432975F13B00E53C4F /* RefeicoesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefeicoesTableViewController.swift; sourceTree = "<group>"; };
+		573D1793298B03D90066E299 /* RemoveRefeicaoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveRefeicaoViewController.swift; sourceTree = "<group>"; };
 		578540242989BFD100BDF8B4 /* Alerta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerta.swift; sourceTree = "<group>"; };
 		57B10067296A50AF00E89ED8 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		57E01B3D2968CAC000E38F3B /* eggplant-brownie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "eggplant-brownie.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +68,7 @@
 				57047F86297B2CC0008D8F14 /* AdicionarItensViewController.swift */,
 				57E01B442968CAC000E38F3B /* ViewController.swift */,
 				573AED432975F13B00E53C4F /* RefeicoesTableViewController.swift */,
+				573D1793298B03D90066E299 /* RemoveRefeicaoViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -186,6 +189,7 @@
 				578540252989BFD100BDF8B4 /* Alerta.swift in Sources */,
 				5717DF99296CB7830075228D /* Item.swift in Sources */,
 				57E01B452968CAC000E38F3B /* ViewController.swift in Sources */,
+				573D1794298B03D90066E299 /* RemoveRefeicaoViewController.swift in Sources */,
 				57047F88297B2CC0008D8F14 /* AdicionarItensViewController.swift in Sources */,
 				57E01B412968CAC000E38F3B /* AppDelegate.swift in Sources */,
 				573AED442975F13B00E53C4F /* RefeicoesTableViewController.swift in Sources */,

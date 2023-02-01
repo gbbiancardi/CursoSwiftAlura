@@ -40,14 +40,15 @@ class RefeicoesTableViewController: UITableViewController, AdicionaRefeicaoDeleg
             guard let indexPath = tableView.indexPath(for: celula) else { return }
             let refeicao = refeicoes[indexPath.row]
             
-            let alerta = UIAlertController(title: refeicao.nome, message: refeicao.detalhes(), preferredStyle: .alert)
-            
-            let botaoCancelar = UIAlertAction(title: "OK", style: .default)
-            alerta.addAction(botaoCancelar)
-            
-            present(alerta, animated: true, completion: nil)
+            // exemplo de closure
+            RemoveRefeicaoViewController(controller: self).exibe(refeicao, handler: { alerta in
+                self.refeicoes.remove(at: indexPath.row)
+                self.tableView.reloadData()
+            })
         }
     }
+    
+    
     
     // método para interceptar as telas de interligadas e conseguir manipular a interação
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // coloca-se o for para aparecer como nome do parâmetro apenas para quando o método for invocado. Internamente o método não encherga o for
